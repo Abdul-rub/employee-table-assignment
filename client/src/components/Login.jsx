@@ -8,8 +8,8 @@ const Login = () => {
 
     const { login, state } = useAuth();
     const [formData, setFormData] = useState({
-        email: '',
-        password: '',
+        email: 'test@gmail.com',
+        password: 'test',
     });
     const navigate = useNavigate()
 
@@ -117,12 +117,12 @@ const Login = () => {
                             </button>
                         </div>
                     </form>
-                    <p className="mt-10 text-center text-sm text-gray-500">
+                    {/* <p className="mt-10 text-center text-sm text-gray-500">
                         Not a member?{' '}
                         <a href="/register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                             Register Here
                         </a>
-                    </p>
+                    </p> */}
 
 
                 </div>

@@ -250,8 +250,8 @@ const EmployeeTable = () => {
                                 </div>
                             </div>
                             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" >
-                                {searchClicked && employeeData.length === 0 && (
-                                    <div className="text-red-500">No data found</div>
+                                {employeeData.length === 0 && searchClicked && (
+                                    <div className="text-red-500 text-center my-4 text-4xl">No data found</div>
                                 )}
                                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
@@ -317,24 +317,26 @@ const EmployeeTable = () => {
 
                             </table>
                             {/* Pagination */}
-                            <div className="flex justify-center mt-4">
-                                <button
-                                    onClick={handlePrevPage}
-                                    className={`px-3 py-1 mx-1 ${currentPage === 1 ? 'bg-white text-blue-500 cursor-not-allowed' : 'bg-blue-500 text-white'
-                                        } border`}
-                                    disabled={currentPage === 1}
-                                >
-                                    Prev
-                                </button>
-                                <button
-                                    onClick={handleNextPage}
-                                    className={`px-3 py-1 mx-1 ${currentPage === maxPage ? 'bg-white text-blue-500 cursor-not-allowed' : 'bg-blue-500 text-white'
-                                        } border`}
-                                    disabled={currentPage === maxPage}
-                                >
-                                    Next
-                                </button>
-                            </div>
+                            {employeeData.length > 0 && (
+                                <div className="flex justify-center mt-4">
+                                    <button
+                                        onClick={handlePrevPage}
+                                        className={`px-3 py-1 mx-1 ${currentPage === 1 ? 'bg-white text-blue-500 cursor-not-allowed' : 'bg-blue-500 text-white'
+                                            } border`}
+                                        disabled={currentPage === 1}
+                                    >
+                                        Prev
+                                    </button>
+                                    <button
+                                        onClick={handleNextPage}
+                                        className={`px-3 py-1 mx-1 ${currentPage === maxPage ? 'bg-white text-blue-500 cursor-not-allowed' : 'bg-blue-500 text-white'
+                                            } border`}
+                                        disabled={currentPage === maxPage}
+                                    >
+                                        Next
+                                    </button>
+                                </div>
+                            )}
 
                         </>
                     )}
