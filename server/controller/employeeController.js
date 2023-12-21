@@ -139,4 +139,17 @@ const deleteEmployee = async (req, res) => {
 };
 
 
-module.exports = { getEmployeeData, addEmployee, updateEmployee, getSingleEmployee,deleteEmployee }
+//SEARCH
+const searchEmployee = async(req,res)=>{
+  try {
+    const { name } = req.query;
+
+    const employees = await employeeModel.find({ name: { $regex: new RegExp(name, 'i') } });
+    res.json(employees);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+module.exports = { getEmployeeData, addEmployee, updateEmployee, getSingleEmployee,deleteEmployee,searchEmployee }

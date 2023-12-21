@@ -1,38 +1,27 @@
-
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, Navigate } from "react-router-dom";
 import Login from "../components/Login";
 import { useAuth } from "../context/authContext";
 import EmployeeTable from "./EmployeeTable";
-import AddUsers from "../components/AddUsers";
-import UpdateUser from "../components/UpdateUser";
-import DeleteUser from "../components/DeleteUser";
-
-
-
+import NotFound from "./NotFound";
 
 const Allroutes = () => {
   const { state } = useAuth();
   const isAuthenticated = localStorage.getItem('isAuthenticated');
 
-
-
-
-
-
   return (
-      <div>
-          <Routes>
-
-          
-              <Route path="/login" element={<Login />} />
-              <Route path="/" element={<EmployeeTable />} />
-              <Route path="/add" element={<AddUsers />} />
-              <Route path="/update" element={<UpdateUser />} />
-              <Route path="/delete" element={<DeleteUser />} />
-
-            
-          </Routes>
-      </div>
+    <div>
+      <Routes>
+        <Route
+          path="/login"
+          element={!isAuthenticated ? <Login /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path="/"
+          element={isAuthenticated ? <EmployeeTable /> : <Navigate to="/login" replace />}
+        />
+         <Route path="*" element={<NotFound />} />
+      </Routes>
+    </div>
   );
 }
 
